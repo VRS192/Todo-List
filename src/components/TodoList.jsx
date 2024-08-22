@@ -1,6 +1,6 @@
 import TodoItem from "./TodoItem";
 
-function TodoList({ todos, toggleTodo, deleteTodo }) {
+function TodoList({ todos, toggleTodo, deleteTodo, updateTodo }) {
     return (
         <>
             <h3>Todo List</h3>
@@ -16,6 +16,7 @@ function TodoList({ todos, toggleTodo, deleteTodo }) {
                         {...todo}
                         toggleTodo={toggleTodo}
                         deleteTodo={deleteTodo}
+                        updateTodo={updateTodo}
                     />
                 ))}
             </ul>

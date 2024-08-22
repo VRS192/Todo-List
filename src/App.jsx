@@ -46,6 +46,21 @@ function App() {
         });
     };
 
+    const updateTodo = (id, name) => {
+        setTodos((currentTodos) => {
+            return currentTodos.map((todo) => {
+                if (todo.id == id) {
+                    return {
+                        ...todo,
+                        name,
+                    };
+                }
+
+                return todo;
+            });
+        });
+    };
+
     return (
         <div className="container-fluid">
             <TodoForm addTodo={addTodo} />
@@ -54,6 +69,7 @@ function App() {
                 todos={todos}
                 toggleTodo={toggleTodo}
                 deleteTodo={deleteTodo}
+                updateTodo={updateTodo}
             />
         </div>
     );
