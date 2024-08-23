@@ -35,7 +35,7 @@ function TodoItem({
     return (
         <li
             className={`list-group-item d-flex align-items-center ${
-                draggingId == id && "opacity-25"
+                draggingId == id ? "opacity-25" : ""
             }`}
             draggable
             onDrag={(event) => startDragging(event, id)}
@@ -44,6 +44,7 @@ function TodoItem({
             onDragEnd={endDragging}
         >
             <input
+                id={`${id}-checkbox`}
                 type="checkbox"
                 className="form-check-input mt-0 me-3"
                 checked={completed}
@@ -51,6 +52,7 @@ function TodoItem({
             />
             {!editing ? (
                 <label
+                    htmlFor={`${id}-checkbox`}
                     className={`text-break form-check-label ${
                         completed ? "text-body-tertiary" : ""
                     }`}
