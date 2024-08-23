@@ -1,6 +1,17 @@
 import { useState } from "react";
 
-function TodoItem({ id, name, completed, toggleTodo, deleteTodo, updateTodo }) {
+function TodoItem({
+    id,
+    name,
+    completed,
+    toggleTodo,
+    deleteTodo,
+    updateTodo,
+    draggingId,
+    startDragging,
+    dragItems,
+    endDragging,
+}) {
     const [editing, setEditing] = useState(false);
     const [todoName, setTodoName] = useState(name);
 
@@ -22,7 +33,16 @@ function TodoItem({ id, name, completed, toggleTodo, deleteTodo, updateTodo }) {
     };
 
     return (
-        <li className="list-group-item d-flex align-items-center">
+        <li
+            className={`list-group-item d-flex align-items-center ${
+                draggingId == id && "opacity-25"
+            }`}
+            draggable
+            onDrag={(event) => startDragging(event, id)}
+            onDragOver={(event) => draggingId && event.preventDefault()}
+            onDrop={(event) => dragItems(event, id)}
+            onDragEnd={endDragging}
+        >
             <input
                 type="checkbox"
                 className="form-check-input mt-0 me-3"

@@ -61,6 +61,15 @@ function App() {
         });
     };
 
+    const moveTodo = (index, destination) => {
+        setTodos((currentTodos) => {
+            const updatedTodos = [...currentTodos];
+            const [draggedItem] = updatedTodos.splice(index, 1);
+            updatedTodos.splice(destination, 0, draggedItem);
+            return updatedTodos;
+        });
+    };
+
     return (
         <div className="container-fluid">
             <TodoForm addTodo={addTodo} />
@@ -70,6 +79,7 @@ function App() {
                 toggleTodo={toggleTodo}
                 deleteTodo={deleteTodo}
                 updateTodo={updateTodo}
+                moveTodo={moveTodo}
             />
         </div>
     );
